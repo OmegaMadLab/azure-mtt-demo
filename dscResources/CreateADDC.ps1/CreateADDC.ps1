@@ -10,12 +10,12 @@ Configuration CreateADDC
          [System.Management.Automation.PSCredential]$Admincreds,
 
          [Parameter(Mandatory=$false)]
-         [String[]]$DnsForwarderList = @('168.63.129.16')
+         [String]$DnsForwarder = '168.63.129.16'
     ) 
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration, ActiveDirectoryDsc, DnsServerDsc
 
-    [System.Management.Automation.PSCredential ]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
+    [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
 
     node 'localhost'
     {
@@ -62,7 +62,7 @@ Configuration CreateADDC
         DnsServerForwarder 'ForwarderConfig'
         {
             DependsOn               = "[WaitForADDomain]WaitForLabDomain"
-            IPAddresses             = $DnsForwarderList
+            IPAddresses             = @($DnsForwarder)
             IsSingleInstance        = 'Yes'
             UseRootHint             = $false
             PsDscRunAsCredential    = $DomainCreds
