@@ -5,7 +5,7 @@ param adminUsername string
 param adminPassword string
 param domainName string
 
-var vnetName = '${namePrefix}-hub-vnet'
+var vnetName = '${namePrefix}-HUB-VNET'
 var coreSubnetName = 'coreSubnet'
 var dcName = '${namePrefix}-DC01'
 var dcVmSize = 'Standard_F2s_v2'
@@ -101,4 +101,7 @@ resource updatedVnet 'Microsoft.Network/virtualNetworks@2022-07-01' = {
       ]
     }
   }
+  dependsOn: [
+    adDcSetup
+  ]
 }

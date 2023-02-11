@@ -10,7 +10,7 @@ Configuration CreateADDC
          [System.Management.Automation.PSCredential]$Admincreds,
 
          [Parameter]
-         [String[]]$DnsForwarderList = ("168.63.129.16")
+         [String[]]$DnsForwarderList = @("168.63.129.16")
     ) 
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration, ActiveDirectoryDsc, DnsServerDsc

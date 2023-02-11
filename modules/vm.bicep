@@ -8,7 +8,7 @@ param isPrivateIpStatic bool = false
 param isOsDiskPremium bool = false
 param isSmallDisk bool = false
 param availabilitySetName string = ''
-param adminUsername string = 'administrator'
+param adminUsername string
 @secure()
 param adminPassword string
 
@@ -61,6 +61,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2022-08-01' = {
     osProfile: {
       adminUsername: adminUsername
       adminPassword: adminPassword
+      computerName: name
     }
     storageProfile: {
       imageReference: osType == 'Windows' ? osWindows : osLinux
