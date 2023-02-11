@@ -9,8 +9,8 @@ Configuration CreateADDC
          [Parameter(Mandatory)]
          [System.Management.Automation.PSCredential]$Admincreds,
 
-         [Parameter]
-         [String[]]$DnsForwarderList = @("168.63.129.16")
+         [Parameter(Mandatory=$false)]
+         [String[]]$DnsForwarderList = @('168.63.129.16')
     ) 
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration, ActiveDirectoryDsc, DnsServerDsc
@@ -65,7 +65,7 @@ Configuration CreateADDC
             IPAddresses             = $DnsForwarderList
             IsSingleInstance        = 'Yes'
             UseRootHint             = $false
-            PsDscRunAsCredential    =  $DomainCreds
+            PsDscRunAsCredential    = $DomainCreds
         }
     }
 }
