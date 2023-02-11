@@ -1,0 +1,163 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>Microsoft.PowerShell.Commands.PSRepositoryItemInfo</T>
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="Name">DnsServerDsc</S>
+      <Version N="Version">3.0.0</Version>
+      <S N="Type">Module</S>
+      <S N="Description">This module contains DSC resources for the management and configuration of Windows Server DNS Server.</S>
+      <S N="Author">DSC Community</S>
+      <S N="CompanyName">dsccommunity</S>
+      <S N="Copyright">Copyright the DSC Community contributors. All rights reserved.</S>
+      <DT N="PublishedDate">2021-05-26T15:10:27+02:00</DT>
+      <Obj N="InstalledDate" RefId="1">
+        <DT>2023-02-11T19:02:53.9262956+01:00</DT>
+        <MS>
+          <Obj N="DisplayHint" RefId="2">
+            <TN RefId="1">
+              <T>Microsoft.PowerShell.Commands.DisplayHintType</T>
+              <T>System.Enum</T>
+              <T>System.ValueType</T>
+              <T>System.Object</T>
+            </TN>
+            <ToString>DateTime</ToString>
+            <I32>2</I32>
+          </Obj>
+        </MS>
+      </Obj>
+      <Nil N="UpdatedDate" />
+      <URI N="LicenseUri">https://github.com/dsccommunity/DnsServerDsc/blob/main/LICENSE</URI>
+      <URI N="ProjectUri">https://github.com/dsccommunity/DnsServerDsc</URI>
+      <URI N="IconUri">https://dsccommunity.org/images/DSC_Logo_300p.png</URI>
+      <Obj N="Tags" RefId="3">
+        <TN RefId="2">
+          <T>System.Object[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST>
+          <S>DesiredStateConfiguration</S>
+          <S>DSC</S>
+          <S>DSCResourceKit</S>
+          <S>DSCResource</S>
+          <S>PSModule</S>
+        </LST>
+      </Obj>
+      <Obj N="Includes" RefId="4">
+        <TN RefId="3">
+          <T>System.Collections.Hashtable</T>
+          <T>System.Object</T>
+        </TN>
+        <DCT>
+          <En>
+            <S N="Key">DscResource</S>
+            <Obj N="Value" RefId="5">
+              <TNRef RefId="2" />
+              <LST>
+                <S>DnsRecordCname</S>
+                <S>DnsRecordPtr</S>
+                <S>DnsRecordA</S>
+                <S>DnsRecordAaaa</S>
+                <S>DnsRecordCnameScoped</S>
+                <S>DnsRecordMx</S>
+                <S>DnsRecordNs</S>
+                <S>DnsRecordSrv</S>
+                <S>DnsServerCache</S>
+                <S>DnsServerDsSetting</S>
+                <S>DnsServerEDns</S>
+                <S>DnsServerRecursion</S>
+                <S>DnsServerScavenging</S>
+                <S>DnsRecordAaaaScoped</S>
+                <S>DnsRecordAScoped</S>
+                <S>DnsRecordMxScoped</S>
+                <S>DnsRecordNsScoped</S>
+                <S>DnsRecordSrvScoped</S>
+                <S>DnsServerADZone</S>
+                <S>DnsServerClientSubnet</S>
+                <S>DnsServerConditionalForwarder</S>
+                <S>DnsServerDiagnostics</S>
+                <S>DnsServerForwarder</S>
+                <S>DnsServerPrimaryZone</S>
+                <S>DnsServerRootHint</S>
+                <S>DnsServerSecondaryZone</S>
+                <S>DnsServerSetting</S>
+                <S>DnsServerSettingLegacy</S>
+                <S>DnsServerZoneAging</S>
+                <S>DnsServerZoneScope</S>
+                <S>DnsServerZoneTransfer</S>
+              </LST>
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Function</S>
+            <Obj N="Value" RefId="6">
+              <TNRef RefId="2" />
+              <LST />
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Workflow</S>
+            <Ref N="Value" RefId="6" />
+          </En>
+          <En>
+            <S N="Key">RoleCapability</S>
+            <Ref N="Value" RefId="6" />
+          </En>
+          <En>
+            <S N="Key">Command</S>
+            <Ref N="Value" RefId="6" />
+          </En>
+          <En>
+            <S N="Key">Cmdlet</S>
+            <Ref N="Value" RefId="6" />
+          </En>
+        </DCT>
+      </Obj>
+      <Nil N="PowerShellGetFormatVersion" />
+      <S N="ReleaseNotes">## [3.0.0] - 2021-05-26_x000A__x000D__x000A_### Removed_x000D__x000A__x000D__x000A_- xDnsRecord_x000D__x000A_  - BREAKING CHANGE: The resource has been replaced by _DnsServerA_, _DnsServerPtr_,_x000D__x000A_  and _DnsServerCName_ ([issue #221](https://github.com/dsccommunity/DnsServerDsc/issues/221))._x000D__x000A_- xDnsServerMx_x000D__x000A_  - BREAKING CHANGE: The resource has been replaced by _DnsServerMx_ ([issue #228](https://github.com/dsccommunity/DnsServerDsc/issues/228))._x000D__x000A_- DnsServerSetting_x000D__x000A_  - BREAKING CHANGE: The properties `Forwarders` and `ForwardingTimeout` has_x000D__x000A_    been removed ([issue #192](https://github.com/dsccommunity/DnsServerDsc/issues/192))._x000D__x000A_    Use the resource _DnsServerForwarder_ to enforce these properties._x000D__x000A_  - BREAKING CHANGE: The properties `EnableEDnsProbes` and `EDnsCacheTimeout` has_x000D__x000A_    been removed ([issue #195](https://github.com/dsccommunity/DnsServerDsc/issues/195))._x000D__x000A_    Use the resource _DnsServerEDns_ to enforce these properties._x000D__x000A_  - BREAKING CHANGE: The properties `SecureResponses`, `MaxCacheTTL`, and_x000D__x000A_    `MaxNegativeCacheTTL` has been removed ([issue #197](https://github.com/dsccommunity/DnsServerDsc/issues/197))._x000D__x000A_    To enforce theses properties, use resource _DnsServerEDns_ using the_x000D__x000A_    properties `EnablePollutionProtection`, `MaxTtl`, and `MaxNegativeTtl`_x000D__x000A_    respectively._x000D__x000A_  - BREAKING CHANGE: The properties `DefaultAgingState`, `ScavengingInterval`,_x000D__x000A_    `DefaultNoRefreshInterval`, and `DefaultRefreshInterval` have been removed._x000D__x000A_    Use the resource _DnsServerScavenging_ to enforce this properties ([issue #193](https://github.com/dsccommunity/DnsServerDsc/issues/193))._x000D__x000A_  - BREAKING CHANGE: The properties `NoRecursion`, `RecursionRetry`, and_x000D__x000A_    `RecursionTimeout` has been removed ([issue #200](https://github.com/dsccommunity/DnsServerDsc/issues/200))._x000D__x000A_    To enforce theses properties, use resource _DnsServerRecursion_ using the_x000D__x000A_    properties `Enable`, `RetryInterval`, and `Timeout` respectively._x000D__x000A_  - BREAKING CHANGE: A few properties that are not supported by any DNS_x000D__x000A_    Server PowerShell cmdlet was moved to the new resource _DnsServerSettingLegacy_._x000D__x000A_  - BREAKING CHANGE: The properties `DsPollingInterval` and `DsTombstoneInterval`_x000D__x000A_    has been removed ([issue #252](https://github.com/dsccommunity/DnsServerDsc/issues/252))._x000D__x000A_    Use the resource _DnsServerDsSetting_ to enforce these properties._x000D__x000A__x000D__x000A_- ResourceBase_x000D__x000A_  - For the method `Get()` the overload that took a `[Microsoft.Management.Infrastructure.CimInstance]`_x000D__x000A_    was removed as it is not the correct pattern going forward._x000D__x000A__x000D__x000A_### Added_x000D__x000A__x000D__x000A_- DnsServerDsc_x000D__x000A_  - Added new resource_x000D__x000A_    - _DnsServerCache_ - resource to enforce cache settings ([issue #196](https://github.com/dsccommunity/DnsServerDsc/issues/196))._x000D__x000A_    - _DnsServerRecursion_ - resource to enforce recursion settings ([issue #198](https://github.com/dsccommunity/DnsServerDsc/issues/198))._x000D__x000A_  - Added new private function `Get-ClassName` that returns the class name_x000D__x000A_    or optionally an array with the class name and all inherited base class_x000D__x000A_    named._x000D__x000A_  - Added new private function `Get-LocalizedDataRecursive` that gathers_x000D__x000A_    all localization strings from an array of class names. This can be used_x000D__x000A_    in classes to be able to inherit localization strings from one or more_x000D__x000A_    base class. If a localization string key exist in a parent class's_x000D__x000A_    localization string file it will override the localization string key_x000D__x000A_    in any base class._x000D__x000A_  - Fixed code coverage in the pipeline ([issue #246](https://github.com/dsccommunity/DnsServerDsc/issues/246))._x000D__x000A_- ResourceBase_x000D__x000A_  - Added new method `Assert()` tha calls `Assert-Module` and `AssertProperties()`._x000D__x000A_- DnsRecordNs_x000D__x000A_  - Added new resource to manage NS records_x000D__x000A_- DnsRecordNsScoped_x000D__x000A_  - Added new resource to manage scoped NS records_x000D__x000A_- DnsServerDsSetting_x000D__x000A_  - Added new resource to manage AD-integrated DNS settings_x000D__x000A_- DnsServerSettingLegacy_x000D__x000A_  - A new resource to manage legacy DNS Server settings that are not supported_x000D__x000A_    by any DNS Server PowerShell cmdlet._x000D__x000A__x000D__x000A_### Changed_x000D__x000A__x000D__x000A_- DnsServerDsc_x000D__x000A_  - BREAKING CHANGE: Renamed the module to DnsServerDsc ([issue #179](https://github.com/dsccommunity/DnsServerDsc/issues/179))._x000D__x000A_  - BREAKING CHANGE: Removed the prefix 'x' from all MOF-based resources_x000D__x000A_    ([issue #179](https://github.com/dsccommunity/DnsServerDsc/issues/179))._x000D__x000A_  - Renamed a MOF-based resource to use the prefix 'DSC' ([issue #225](https://github.com/dsccommunity/DnsServerDsc/issues/225))._x000D__x000A_  - Fix stub `Get-DnsServerResourceRecord` so it throws if it is not mocked_x000D__x000A_    correctly ([issue #204](https://github.com/dsccommunity/DnsServerDsc/issues/204))._x000D__x000A_  - Switch the order in the deploy pipeline so that creating the GitHub release_x000D__x000A_    is made after a successful release._x000D__x000A_  - Updated stub functions to throw if they are used (when missing a mock in_x000D__x000A_    unit test) ([issue #235](https://github.com/dsccommunity/DnsServerDsc/issues/235))._x000D__x000A_- ResourceBase_x000D__x000A_  - Added support for inherit localization strings and also able to override_x000D__x000A_    a localization string that exist in a base class._x000D__x000A_  - Moved more logic from the resources into the base class for the method_x000D__x000A_    `Test()`, `Get()`, and `Set()`. The base class now have three methods_x000D__x000A_    `AssertProperties()`, `Modify()`, and `GetCurrentState()` where the_x000D__x000A_    two latter ones must be overridden by a resource if calling the base_x000D__x000A_    methods `Set()` and `Get()`._x000D__x000A_  - Moved the `Assert-Module` from the constructor to a new method `Assert()`_x000D__x000A_    that is called from `Get()`, `Test()`, and `Set()`. The method `Assert()`_x000D__x000A_    also calls the method `AssertProperties()`. The method `Assert()` is not_x000D__x000A_    meant to be overridden, but can if there is a reason not to run_x000D__x000A_    `Assert-Module` and or `AssertProperties()`._x000D__x000A_- Integration tests_x000D__x000A_  - Added commands in the DnsRecord* integration tests to wait for the LCM_x000D__x000A_    before moving to the next test._x000D__x000A_- DnsServerCache_x000D__x000A_  - Moved to the same coding pattern as _DnsServerRecursion_._x000D__x000A_- DnsServerEDns_x000D__x000A_  - Moved to the same coding pattern as _DnsServerRecursion_._x000D__x000A_- DnsServerScavenging_x000D__x000A_  - Moved to the same coding pattern as _DnsServerRecursion_._x000D__x000A_- DnsServerSetting_x000D__x000A_  - Changed to use `Get-DnsServerSetting` and `Set-DnsServerSetting`_x000D__x000A_    ([issue #185](https://github.com/dsccommunity/xDnsServer/issues/185))._x000D__x000A_  - BREAKING CHANGE: The property `DisableAutoReverseZones` have been renamed_x000D__x000A_    to `DisableAutoReverseZone`._x000D__x000A_  - BREAKING CHANGE: The property `ListenAddresses` have been renamed_x000D__x000A_    to `ListeningIPAddress`._x000D__x000A_  - BREAKING CHANGE: The property `AllowUpdate` was changed to a boolean_x000D__x000A_    value (`$true` or `$false`) since that is what the cmdlet `Set-DnsServerSetting`_x000D__x000A_    is expecting (related to [issue #101](https://github.com/dsccommunity/xDnsServer/issues/101))._x000D__x000A_  - BREAKING CHANGE: The property `EnableDnsSec` was changed to a boolean_x000D__x000A_    value (`$true` or `$false`) since that is what the cmdlet `Set-DnsServerSetting`_x000D__x000A_    is expecting._x000D__x000A_  - BREAKING CHANGE: The property `ForwardDelegations` was changed to a boolean_x000D__x000A_    value (`$true` or `$false`) since that is what the cmdlet `Set-DnsServerSetting`_x000D__x000A_    is expecting._x000D__x000A__x000D__x000A_### Fixed_x000D__x000A__x000D__x000A_- Logic bug in DnsRecordPtr.expandIPv6String($string) (#255)_x000D__x000A_  - Supporting tests added</S>
+      <Obj N="Dependencies" RefId="7">
+        <TNRef RefId="2" />
+        <LST />
+      </Obj>
+      <S N="RepositorySourceLocation">https://www.powershellgallery.com/api/v2</S>
+      <S N="Repository">PSGallery</S>
+      <S N="PackageManagementProvider">NuGet</S>
+      <Obj N="AdditionalMetadata" RefId="8">
+        <TN RefId="4">
+          <T>System.Management.Automation.PSCustomObject</T>
+          <T>System.Object</T>
+        </TN>
+        <MS>
+          <S N="copyright">Copyright the DSC Community contributors. All rights reserved.</S>
+          <S N="description">This module contains DSC resources for the management and configuration of Windows Server DNS Server.</S>
+          <S N="requireLicenseAcceptance">False</S>
+          <S N="releaseNotes">## [3.0.0] - 2021-05-26_x000A__x000D__x000A_### Removed_x000D__x000A__x000D__x000A_- xDnsRecord_x000D__x000A_  - BREAKING CHANGE: The resource has been replaced by _DnsServerA_, _DnsServerPtr_,_x000D__x000A_  and _DnsServerCName_ ([issue #221](https://github.com/dsccommunity/DnsServerDsc/issues/221))._x000D__x000A_- xDnsServerMx_x000D__x000A_  - BREAKING CHANGE: The resource has been replaced by _DnsServerMx_ ([issue #228](https://github.com/dsccommunity/DnsServerDsc/issues/228))._x000D__x000A_- DnsServerSetting_x000D__x000A_  - BREAKING CHANGE: The properties `Forwarders` and `ForwardingTimeout` has_x000D__x000A_    been removed ([issue #192](https://github.com/dsccommunity/DnsServerDsc/issues/192))._x000D__x000A_    Use the resource _DnsServerForwarder_ to enforce these properties._x000D__x000A_  - BREAKING CHANGE: The properties `EnableEDnsProbes` and `EDnsCacheTimeout` has_x000D__x000A_    been removed ([issue #195](https://github.com/dsccommunity/DnsServerDsc/issues/195))._x000D__x000A_    Use the resource _DnsServerEDns_ to enforce these properties._x000D__x000A_  - BREAKING CHANGE: The properties `SecureResponses`, `MaxCacheTTL`, and_x000D__x000A_    `MaxNegativeCacheTTL` has been removed ([issue #197](https://github.com/dsccommunity/DnsServerDsc/issues/197))._x000D__x000A_    To enforce theses properties, use resource _DnsServerEDns_ using the_x000D__x000A_    properties `EnablePollutionProtection`, `MaxTtl`, and `MaxNegativeTtl`_x000D__x000A_    respectively._x000D__x000A_  - BREAKING CHANGE: The properties `DefaultAgingState`, `ScavengingInterval`,_x000D__x000A_    `DefaultNoRefreshInterval`, and `DefaultRefreshInterval` have been removed._x000D__x000A_    Use the resource _DnsServerScavenging_ to enforce this properties ([issue #193](https://github.com/dsccommunity/DnsServerDsc/issues/193))._x000D__x000A_  - BREAKING CHANGE: The properties `NoRecursion`, `RecursionRetry`, and_x000D__x000A_    `RecursionTimeout` has been removed ([issue #200](https://github.com/dsccommunity/DnsServerDsc/issues/200))._x000D__x000A_    To enforce theses properties, use resource _DnsServerRecursion_ using the_x000D__x000A_    properties `Enable`, `RetryInterval`, and `Timeout` respectively._x000D__x000A_  - BREAKING CHANGE: A few properties that are not supported by any DNS_x000D__x000A_    Server PowerShell cmdlet was moved to the new resource _DnsServerSettingLegacy_._x000D__x000A_  - BREAKING CHANGE: The properties `DsPollingInterval` and `DsTombstoneInterval`_x000D__x000A_    has been removed ([issue #252](https://github.com/dsccommunity/DnsServerDsc/issues/252))._x000D__x000A_    Use the resource _DnsServerDsSetting_ to enforce these properties._x000D__x000A__x000D__x000A_- ResourceBase_x000D__x000A_  - For the method `Get()` the overload that took a `[Microsoft.Management.Infrastructure.CimInstance]`_x000D__x000A_    was removed as it is not the correct pattern going forward._x000D__x000A__x000D__x000A_### Added_x000D__x000A__x000D__x000A_- DnsServerDsc_x000D__x000A_  - Added new resource_x000D__x000A_    - _DnsServerCache_ - resource to enforce cache settings ([issue #196](https://github.com/dsccommunity/DnsServerDsc/issues/196))._x000D__x000A_    - _DnsServerRecursion_ - resource to enforce recursion settings ([issue #198](https://github.com/dsccommunity/DnsServerDsc/issues/198))._x000D__x000A_  - Added new private function `Get-ClassName` that returns the class name_x000D__x000A_    or optionally an array with the class name and all inherited base class_x000D__x000A_    named._x000D__x000A_  - Added new private function `Get-LocalizedDataRecursive` that gathers_x000D__x000A_    all localization strings from an array of class names. This can be used_x000D__x000A_    in classes to be able to inherit localization strings from one or more_x000D__x000A_    base class. If a localization string key exist in a parent class's_x000D__x000A_    localization string file it will override the localization string key_x000D__x000A_    in any base class._x000D__x000A_  - Fixed code coverage in the pipeline ([issue #246](https://github.com/dsccommunity/DnsServerDsc/issues/246))._x000D__x000A_- ResourceBase_x000D__x000A_  - Added new method `Assert()` tha calls `Assert-Module` and `AssertProperties()`._x000D__x000A_- DnsRecordNs_x000D__x000A_  - Added new resource to manage NS records_x000D__x000A_- DnsRecordNsScoped_x000D__x000A_  - Added new resource to manage scoped NS records_x000D__x000A_- DnsServerDsSetting_x000D__x000A_  - Added new resource to manage AD-integrated DNS settings_x000D__x000A_- DnsServerSettingLegacy_x000D__x000A_  - A new resource to manage legacy DNS Server settings that are not supported_x000D__x000A_    by any DNS Server PowerShell cmdlet._x000D__x000A__x000D__x000A_### Changed_x000D__x000A__x000D__x000A_- DnsServerDsc_x000D__x000A_  - BREAKING CHANGE: Renamed the module to DnsServerDsc ([issue #179](https://github.com/dsccommunity/DnsServerDsc/issues/179))._x000D__x000A_  - BREAKING CHANGE: Removed the prefix 'x' from all MOF-based resources_x000D__x000A_    ([issue #179](https://github.com/dsccommunity/DnsServerDsc/issues/179))._x000D__x000A_  - Renamed a MOF-based resource to use the prefix 'DSC' ([issue #225](https://github.com/dsccommunity/DnsServerDsc/issues/225))._x000D__x000A_  - Fix stub `Get-DnsServerResourceRecord` so it throws if it is not mocked_x000D__x000A_    correctly ([issue #204](https://github.com/dsccommunity/DnsServerDsc/issues/204))._x000D__x000A_  - Switch the order in the deploy pipeline so that creating the GitHub release_x000D__x000A_    is made after a successful release._x000D__x000A_  - Updated stub functions to throw if they are used (when missing a mock in_x000D__x000A_    unit test) ([issue #235](https://github.com/dsccommunity/DnsServerDsc/issues/235))._x000D__x000A_- ResourceBase_x000D__x000A_  - Added support for inherit localization strings and also able to override_x000D__x000A_    a localization string that exist in a base class._x000D__x000A_  - Moved more logic from the resources into the base class for the method_x000D__x000A_    `Test()`, `Get()`, and `Set()`. The base class now have three methods_x000D__x000A_    `AssertProperties()`, `Modify()`, and `GetCurrentState()` where the_x000D__x000A_    two latter ones must be overridden by a resource if calling the base_x000D__x000A_    methods `Set()` and `Get()`._x000D__x000A_  - Moved the `Assert-Module` from the constructor to a new method `Assert()`_x000D__x000A_    that is called from `Get()`, `Test()`, and `Set()`. The method `Assert()`_x000D__x000A_    also calls the method `AssertProperties()`. The method `Assert()` is not_x000D__x000A_    meant to be overridden, but can if there is a reason not to run_x000D__x000A_    `Assert-Module` and or `AssertProperties()`._x000D__x000A_- Integration tests_x000D__x000A_  - Added commands in the DnsRecord* integration tests to wait for the LCM_x000D__x000A_    before moving to the next test._x000D__x000A_- DnsServerCache_x000D__x000A_  - Moved to the same coding pattern as _DnsServerRecursion_._x000D__x000A_- DnsServerEDns_x000D__x000A_  - Moved to the same coding pattern as _DnsServerRecursion_._x000D__x000A_- DnsServerScavenging_x000D__x000A_  - Moved to the same coding pattern as _DnsServerRecursion_._x000D__x000A_- DnsServerSetting_x000D__x000A_  - Changed to use `Get-DnsServerSetting` and `Set-DnsServerSetting`_x000D__x000A_    ([issue #185](https://github.com/dsccommunity/xDnsServer/issues/185))._x000D__x000A_  - BREAKING CHANGE: The property `DisableAutoReverseZones` have been renamed_x000D__x000A_    to `DisableAutoReverseZone`._x000D__x000A_  - BREAKING CHANGE: The property `ListenAddresses` have been renamed_x000D__x000A_    to `ListeningIPAddress`._x000D__x000A_  - BREAKING CHANGE: The property `AllowUpdate` was changed to a boolean_x000D__x000A_    value (`$true` or `$false`) since that is what the cmdlet `Set-DnsServerSetting`_x000D__x000A_    is expecting (related to [issue #101](https://github.com/dsccommunity/xDnsServer/issues/101))._x000D__x000A_  - BREAKING CHANGE: The property `EnableDnsSec` was changed to a boolean_x000D__x000A_    value (`$true` or `$false`) since that is what the cmdlet `Set-DnsServerSetting`_x000D__x000A_    is expecting._x000D__x000A_  - BREAKING CHANGE: The property `ForwardDelegations` was changed to a boolean_x000D__x000A_    value (`$true` or `$false`) since that is what the cmdlet `Set-DnsServerSetting`_x000D__x000A_    is expecting._x000D__x000A__x000D__x000A_### Fixed_x000D__x000A__x000D__x000A_- Logic bug in DnsRecordPtr.expandIPv6String($string) (#255)_x000D__x000A_  - Supporting tests added</S>
+          <S N="isLatestVersion">True</S>
+          <S N="isAbsoluteLatestVersion">False</S>
+          <S N="versionDownloadCount">93060</S>
+          <S N="downloadCount">93575</S>
+          <S N="packageSize">141372</S>
+          <S N="published">5/26/2021 3:10:27 PM +02:00</S>
+          <S N="created">5/26/2021 3:10:27 PM +02:00</S>
+          <S N="lastUpdated">2/11/2023 5:52:46 PM +01:00</S>
+          <S N="tags">DesiredStateConfiguration DSC DSCResourceKit DSCResource PSModule PSDscResource_DnsRecordCname PSDscResource_DnsRecordPtr PSDscResource_DnsRecordA PSDscResource_DnsRecordAaaa PSDscResource_DnsRecordCnameScoped PSDscResource_DnsRecordMx PSDscResource_DnsRecordNs PSDscResource_DnsRecordSrv PSDscResource_DnsServerCache PSDscResource_DnsServerDsSetting PSDscResource_DnsServerEDns PSDscResource_DnsServerRecursion PSDscResource_DnsServerScavenging PSDscResource_DnsRecordAaaaScoped PSDscResource_DnsRecordAScoped PSDscResource_DnsRecordMxScoped PSDscResource_DnsRecordNsScoped PSDscResource_DnsRecordSrvScoped PSDscResource_DnsServerADZone PSDscResource_DnsServerClientSubnet PSDscResource_DnsServerConditionalForwarder PSDscResource_DnsServerDiagnostics PSDscResource_DnsServerForwarder PSDscResource_DnsServerPrimaryZone PSDscResource_DnsServerRootHint PSDscResource_DnsServerSecondaryZone PSDscResource_DnsServerSetting PSDscResource_DnsServerSettingLegacy PSDscResource_DnsServerZoneAging PSDscResource_DnsServerZoneScope PSDscResource_DnsServerZoneTransfer PSIncludes_DscResource</S>
+          <S N="developmentDependency">False</S>
+          <S N="updated">2023-02-11T17:52:46Z</S>
+          <S N="NormalizedVersion">3.0.0</S>
+          <S N="Authors">DSC Community</S>
+          <S N="IsPrerelease">false</S>
+          <S N="ItemType">Module</S>
+          <S N="FileList">DnsServerDsc.nuspec|DnsServerDsc.psm1|DnsServerDsc.psd1|en-US\ResourcePropertiesBase.strings.psd1|en-US\about_DnsRecordSrv.help.txt|en-US\DnsRecordA.strings.psd1|en-US\DnsRecordNsScoped.strings.psd1|en-US\DnsServerEDns.strings.psd1|en-US\DnsServerDsSetting.strings.psd1|en-US\DnsServerScavenging.strings.psd1|en-US\about_DnsServerCache.help.txt|en-US\DnsServerCache.strings.psd1|en-US\about_DnsRecordCnameScoped.help.txt|en-US\DnsRecordCname.strings.psd1|en-US\about_DnsRecordAaaa.help.txt|en-US\DnsRecordMxScoped.strings.psd1|en-US\DnsRecordAaaa.strings.psd1|en-US\DnsServerDsc.strings.psd1|en-US\ResourceBase.strings.psd1|en-US\DnsRecordSrv.strings.psd1|en-US\about_DnsRecordPtr.help.txt|en-US\about_DnsRecordNsScoped.help.txt|en-US\DnsServerRecursion.strings.psd1|en-US\about_DnsRecordA.help.txt|en-US\about_DnsServerEDns.help.txt|en-US\DnsRecordSrvScoped.strings.psd1|en-US\about_DnsRecordCname.help.txt|en-US\DnsRecordAaaaScoped.strings.psd1|en-US\DnsRecordAScoped.strings.psd1|en-US\about_DnsRecordAScoped.help.txt|en-US\about_DnsRecordAaaaScoped.help.txt|en-US\DnsRecordNs.strings.psd1|en-US\about_DnsServerScavenging.help.txt|en-US\about_DnsRecordMx.help.txt|en-US\about_DnsServerDsSetting.help.txt|en-US\DnsRecordCnameScoped.strings.psd1|en-US\about_DnsRecordNs.help.txt|en-US\DnsRecordMx.strings.psd1|en-US\about_DnsRecordMxScoped.help.txt|en-US\DnsRecordPtr.strings.psd1|en-US\about_DnsRecordSrvScoped.help.txt|en-US\about_DnsServerDsc.help.txt|en-US\DnsRecordBase.strings.psd1|en-US\about_DnsServerRecursion.help.txt|DSCResources\DSC_DnsServerRootHint\DSC_DnsServerRootHint.psm1|DSCResources\DSC_DnsServerRootHint\DSC_DnsServerRootHint.schema.mof|DSCResources\DSC_DnsServerRootHint\README.md|DSCResources\DSC_DnsServerForwarder\DSC_DnsServerForwarder.schema.mof|DSCResources\DSC_DnsServerForwarder\README.md|DSCResources\DSC_DnsServerForwarder\DSC_DnsServerForwarder.psm1|DSCResources\DSC_DnsServerDiagnostics\DSC_DnsServerDiagnostics.psm1|DSCResources\DSC_DnsServerDiagnostics\DSC_DnsServerDiagnostics.schema.mof|DSCResources\DSC_DnsServerDiagnostics\README.md|DSCResources\DSC_DnsServerSettingLegacy\DSC_DnsServerSettingLegacy.psm1|DSCResources\DSC_DnsServerSettingLegacy\DSC_DnsServerSettingLegacy.schema.mof|DSCResources\DSC_DnsServerSettingLegacy\README.md|DSCResources\DSC_DnsServerSetting\DSC_DnsServerSetting.psm1|DSCResources\DSC_DnsServerSetting\README.md|DSCResources\DSC_DnsServerSetting\DSC_DnsServerSetting.schema.mof|DSCResources\DSC_DnsServerZoneTransfer\DSC_DnsServerZoneTransfer.schema.mof|DSCResources\DSC_DnsServerZoneTransfer\DSC_DnsServerZoneTransfer.psm1|DSCResources\DSC_DnsServerZoneTransfer\README.md|DSCResources\DSC_DnsServerConditionalForwarder\DSC_DnsServerConditionalForwarder.schema.mof|DSCResources\DSC_DnsServerConditionalForwarder\README.md|DSCResources\DSC_DnsServerConditionalForwarder\DSC_DnsServerConditionalForwarder.psm1|DSCResources\DSC_DnsServerSecondaryZone\README.md|DSCResources\DSC_DnsServerSecondaryZone\DSC_DnsServerSecondaryZone.schema.mof|DSCResources\DSC_DnsServerSecondaryZone\DSC_DnsServerSecondaryZone.psm1|DSCResources\DSC_DnsServerZoneScope\DSC_DnsServerZoneScope.psm1|DSCResources\DSC_DnsServerZoneScope\README.md|DSCResources\DSC_DnsServerZoneScope\DSC_DnsServerZoneScope.schema.mof|DSCResources\DSC_DnsServerADZone\DSC_DnsServerADZone.psm1|DSCResources\DSC_DnsServerADZone\README.md|DSCResources\DSC_DnsServerADZone\DSC_DnsServerADZone.schema.mof|DSCResources\DSC_DnsServerPrimaryZone\DSC_DnsServerPrimaryZone.psm1|DSCResources\DSC_DnsServerPrimaryZone\DSC_DnsServerPrimaryZone.schema.mof|DSCResources\DSC_DnsServerPrimaryZone\README.md|DSCResources\DSC_DnsServerZoneAging\DSC_DnsServerZoneAging.schema.mof|DSCResources\DSC_DnsServerZoneAging\DSC_DnsServerZoneAging.psm1|DSCResources\DSC_DnsServerZoneAging\README.md|DSCResources\DSC_DnsServerClientSubnet\DSC_DnsServerClientSubnet.schema.mof|DSCResources\DSC_DnsServerClientSubnet\DSC_DnsServerClientSubnet.psm1|DSCResources\DSC_DnsServerClientSubnet\README.md|Modules\DnsServerDsc.Common\DnsServerDsc.Common.psd1|Modules\DnsServerDsc.Common\DnsServerDsc.Common.psm1|DSCResources\DSC_DnsServerRootHint\en-US\about_DnsServerRootHint.help.txt|DSCResources\DSC_DnsServerRootHint\en-US\DSC_DnsServerRootHint.strings.psd1|DSCResources\DSC_DnsServerForwarder\en-US\DSC_DnsServerForwarder.strings.psd1|DSCResources\DSC_DnsServerForwarder\en-US\about_DnsServerForwarder.help.txt|DSCResources\DSC_DnsServerDiagnostics\en-US\about_DnsServerDiagnostics.help.txt|DSCResources\DSC_DnsServerDiagnostics\en-US\DSC_DnsServerDiagnostics.strings.psd1|DSCResources\DSC_DnsServerSettingLegacy\en-US\DSC_DnsServerSettingLegacy.strings.psd1|DSCResources\DSC_DnsServerSettingLegacy\en-US\about_DnsServerSettingLegacy.help.txt|DSCResources\DSC_DnsServerSetting\en-US\about_DnsServerSetting.help.txt|DSCResources\DSC_DnsServerSetting\en-US\DSC_DnsServerSetting.strings.psd1|DSCResources\DSC_DnsServerZoneTransfer\en-US\about_DnsServerZoneTransfer.help.txt|DSCResources\DSC_DnsServerZoneTransfer\en-US\DSC_DnsServerZoneTransfer.strings.psd1|DSCResources\DSC_DnsServerConditionalForwarder\en-US\DSC_DnsServerConditionalForwarder.strings.psd1|DSCResources\DSC_DnsServerConditionalForwarder\en-US\about_DnsServerConditionalForwarder.help.txt|DSCResources\DSC_DnsServerSecondaryZone\en-US\about_DnsServerSecondaryZone.help.txt|DSCResources\DSC_DnsServerSecondaryZone\en-US\DSC_DnsServerSecondaryZone.strings.psd1|DSCResources\DSC_DnsServerZoneScope\en-US\about_DnsServerZoneScope.help.txt|DSCResources\DSC_DnsServerZoneScope\en-US\DSC_DnsServerZoneScope.strings.psd1|DSCResources\DSC_DnsServerADZone\en-US\DSC_DnsServerADZone.strings.psd1|DSCResources\DSC_DnsServerADZone\en-US\about_DnsServerADZone.help.txt|DSCResources\DSC_DnsServerPrimaryZone\en-US\about_DnsServerPrimaryZone.help.txt|DSCResources\DSC_DnsServerPrimaryZone\en-US\DSC_DnsServerPrimaryZone.strings.psd1|DSCResources\DSC_DnsServerZoneAging\en-US\DSC_DnsServerZoneAging.strings.psd1|DSCResources\DSC_DnsServerZoneAging\en-US\about_DnsServerZoneAging.help.txt|DSCResources\DSC_DnsServerClientSubnet\en-US\about_DnsServerClientSubnet.help.txt|DSCResources\DSC_DnsServerClientSubnet\en-US\DSC_DnsServerClientSubnet.strings.psd1|Modules\DnsServerDsc.Common\en-US\DnsServerDsc.Common.strings.psd1|Modules\DscResource.Common\0.10.2\DscResource.Common.psd1|Modules\DscResource.Common\0.10.2\DscResource.Common.psm1|Modules\DscResource.Common\0.10.2\en-US\DscResource.Common.strings.psd1|Modules\DscResource.Common\0.10.2\en-US\about_DscResource.Common.help.txt</S>
+          <S N="GUID">5f70e6a1-f1b2-4ba0-8276-8967d43a7ec2</S>
+          <S N="PowerShellVersion">5.0</S>
+          <S N="CompanyName">DSC Community</S>
+        </MS>
+      </Obj>
+      <S N="InstalledLocation">C:\Users\marcoobinu\Documents\PowerShell\Modules\DnsServerDsc\3.0.0</S>
+    </MS>
+  </Obj>
+</Objs>
