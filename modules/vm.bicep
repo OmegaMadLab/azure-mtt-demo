@@ -5,8 +5,10 @@ param vmSize string
 param osType string
 param subnetId string
 param isPrivateIpStatic bool = false
+param asgIdList array = []
 param isOsDiskPremium bool = false
 param isSmallDisk bool = false
+param isSpotVm bool = false
 param availabilitySetName string = ''
 param adminUsername string
 @secure()
@@ -36,6 +38,7 @@ resource nic 'Microsoft.Network/networkInterfaces@2022-07-01' = {
       {
         name: 'ipconfig1'
         properties: {
+          applicationSecurityGroups: asgIdList
           privateIPAllocationMethod: isPrivateIpStatic ? 'Static' : 'Dynamic'
           subnet: {
             id: subnetId
@@ -54,6 +57,9 @@ resource vm 'Microsoft.Compute/virtualMachines@2022-08-01' = {
   name: name
   location: location
   properties: {
+    evictionPolicy: isSpotVm ? 'Deallocate' : null
+    billingProfile: isSpotVm ? { maxPrice: -1 } : null
+    priority: isSpotVm ? 'Spot' : 'Regular'
     availabilitySet: availabilitySetName != '' ?  { id: avSet.id } : null
     hardwareProfile: {
       vmSize: vmSize

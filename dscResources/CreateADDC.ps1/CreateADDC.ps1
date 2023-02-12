@@ -25,19 +25,19 @@ Configuration CreateADDC
             Ensure = 'Present'
         }
 
-        WindowsFeature 'RSAT'
+        WindowsFeature 'RSAT-AD'
         {
-            Name   = 'RSAT-AD-PowerShell'
+            Name   = 'RSAT-AD-Tools'
             Ensure = 'Present'
         }
 
-        WindowsFeature InstallDNS
+        WindowsFeature 'InstallDNS'
         {
             Ensure = 'Present'
             Name   = 'DNS'
         }
 
-        WindowsFeature InstallDNSTools
+        WindowsFeature 'InstallDNSTools'
         {
             Ensure = 'Present'
             Name   = 'RSAT-DNS-Server'

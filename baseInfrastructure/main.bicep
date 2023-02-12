@@ -85,6 +85,7 @@ resource adDcSetup 'Microsoft.Compute/virtualMachines/extensions@2022-11-01' = {
 
 resource updatedVnet 'Microsoft.Network/virtualNetworks@2022-07-01' = {
   name: vnet.name
+  location: location
   properties: {
     addressSpace: {
       addressPrefixes: vnetAddressPrefixes
@@ -105,3 +106,6 @@ resource updatedVnet 'Microsoft.Network/virtualNetworks@2022-07-01' = {
     adDcSetup
   ]
 }
+
+output vmDcId string = vmDc.outputs.vmId
+output vnetId string = vnet.outputs.resourceId
