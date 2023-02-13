@@ -31,3 +31,10 @@ New-AzBastion -ResourceGroupName $rg.ResourceGroupName `
     -PublicIpAddressId $pip.Id `
     -VirtualNetworkResourceId $baseInfraDeployment.Outputs.vnetId.Value `
     -Sku "Basic"
+
+# Deploy an ACR and create a demo image
+$acrName = "omegamadlabacrdemo"
+az acr create --resource-group $rg.ResourceGroupName --name $acrName --sku Basic
+
+az acr build --registry $acrName --image helloacrtasks:v1 .\dockerFiles\helloWorld
+az acr repository list --name $acrName --output table

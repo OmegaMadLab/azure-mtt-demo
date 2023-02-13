@@ -10,7 +10,8 @@ param hubVnetName string = ''
 param hubVnetRgName string = resourceGroup().name
 
 
-var vmSize = 'Standard_F2s_v2'
+var feVmSize = 'Standard_B2s'
+var beVmSize = 'Standard_F2s_v2'
 
 var cseScriptUrl = 'https://raw.githubusercontent.com/OmegaMadLab/azure-mtt-demo/master/customScriptExtensions/prepareIisVm.ps1'
 var cseScriptName = 'prepareIisVm.ps1'
@@ -42,29 +43,30 @@ module vnet 'br/public:network/virtual-network:1.1.1' = {
   }
 }
 
-resource remotePeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2020-07-01' = if (hubVnetName != '') {
-  name: '${hubVnetName}/hub-to-spoke${index}'
-  properties: {
+module remotePeering '../modules/peering.bicep' = if (hubVnetName != '') {
+  name: 'hub-to-spoke${index}'
+  scope: resourceGroup(hubVnetRgName)
+  params: {
+    existingLocalVirtualNetworkName: hubVnetName
+    existingRemoteVirtualNetworkName: vnet.name
+    existingRemoteVirtualNetworkResourceGroupName: resourceGroup().name
     allowVirtualNetworkAccess: true
     allowForwardedTraffic: true
     allowGatewayTransit: true
     useRemoteGateways: false
-    remoteVirtualNetwork: {
-      id: vnet.outputs.resourceId
-    }
   }
 }
 
-resource localPeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2020-07-01' = if (hubVnetName != '') {
-  name: '${vnet.name}/spoke${index}-to-hub'
-  properties: {
+module localPeering '../modules/peering.bicep' = if (hubVnetName != '') {
+  name: 'spoke${index}-to-hub'
+  params: {
+    existingLocalVirtualNetworkName: vnet.name
+    existingRemoteVirtualNetworkName: hubVnetName
+    existingRemoteVirtualNetworkResourceGroupName: hubVnetRgName
     allowVirtualNetworkAccess: true
     allowForwardedTraffic: true
-    allowGatewayTransit: false
-    useRemoteGateways: true
-    remoteVirtualNetwork: {
-      id: resourceId(hubVnetRgName, 'Microsoft.Network/virtualNetworks', hubVnetName)
-    }
+    allowGatewayTransit: true
+    useRemoteGateways: false
   }
 }
 
@@ -72,6 +74,9 @@ resource localPeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@
 resource avSet 'Microsoft.Compute/availabilitySets@2022-11-01' = {
   name: '${namePrefix}-${index}-FE-AVSET'
   location: location
+  sku: {
+    name: 'aligned'
+  }
   properties: {
     platformUpdateDomainCount: 3
     platformFaultDomainCount: 3
@@ -92,15 +97,15 @@ module frontendVm '../modules/vm.bicep' = [for i in range(1, 2): {
     name: '${namePrefix}-${index}-FE-VM${i}'
     osType: 'Windows'
     subnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnet.name, 'frontendSubnet')
-    vmSize: vmSize
+    vmSize: feVmSize
     asgIdList: [ asg.id ]
     availabilitySetName: avSet.name
     isSmallDisk: true
-    isSpotVm: true
+    isSpotVm: false
   }
 }]
 
-resource feVMExtensions 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = [for i in range(1, 2): {
+resource feVMExtensions 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = [for i in range(0, 2): {
   name: '${frontendVm[i].name}/prepareIisVm'
   location: location
   properties: {
@@ -129,7 +134,7 @@ module backendVm '../modules/vm.bicep' = {
     name: '${namePrefix}-${index}-BE-VM'
     osType: 'Windows'
     subnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnet.name, 'backendSubnet')
-    vmSize: vmSize
+    vmSize: beVmSize
     isSmallDisk: true
     isSpotVm: true
   }

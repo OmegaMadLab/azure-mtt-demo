@@ -14,7 +14,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = [for i in range(1,
 }]
 
 module spoke 'networkdemo.bicep' = [for i in range(1, 2): {
-  scope: rg[i]
+  scope: rg[i-1]
   name: 'spoke${i}'
   params: {
     location: location

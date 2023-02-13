@@ -38,7 +38,9 @@ resource nic 'Microsoft.Network/networkInterfaces@2022-07-01' = {
       {
         name: 'ipconfig1'
         properties: {
-          applicationSecurityGroups: asgIdList
+          applicationSecurityGroups: [for asgId in asgIdList: {
+            id: asgId
+          }]
           privateIPAllocationMethod: isPrivateIpStatic ? 'Static' : 'Dynamic'
           subnet: {
             id: subnetId
