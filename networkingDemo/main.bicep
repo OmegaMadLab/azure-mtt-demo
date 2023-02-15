@@ -26,3 +26,4 @@ module spoke 'networkdemo.bicep' = [for i in range(1, 2): {
     hubVnetRgName: hubVnetRgName 
   }
 }]
+

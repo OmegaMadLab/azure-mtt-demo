@@ -8,10 +8,15 @@ param domainName string
 var vnetName = '${namePrefix}-HUB-VNET'
 var coreSubnetName = 'coreSubnet'
 var dcName = '${namePrefix}-DC01'
+var memberSrvName = '${namePrefix}-SRV01'
 var dcVmSize = 'Standard_F2s_v2'
+var memberSrvSize = 'Standard_B2s'
 
 var createADDCModuleUrl = 'https://raw.githubusercontent.com/OmegaMadLab/azure-mtt-demo/master/dscResources/CreateADDC.ps1.zip'
 var createADDCConfigurationFunction = 'CreateADDC.ps1\\CreateADDC'
+
+var joinADModuleUrl = 'https://raw.githubusercontent.com/OmegaMadLab/azure-mtt-demo/master/dscResources/ADDomainJoin.ps1.zip'
+var joinADConfigurationFunction = 'ADDomainJoin.ps1\\ADDomainJoin'
 
 var vnetAddressPrefixes = ['10.0.0.0/22']
 var subnetList = [
@@ -49,10 +54,11 @@ module vmDc '../modules/vm.bicep' = {
     adminUsername: adminUsername
     adminPassword: adminPassword
     location: location
-    name: '${namePrefix}-DC01'
+    name: dcName
     osType: 'Windows'
     subnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnet.name, coreSubnetName)
     vmSize: dcVmSize
+    isPrivateIpStatic: true
   }
 }
 
@@ -107,5 +113,49 @@ resource updatedVnet 'Microsoft.Network/virtualNetworks@2022-07-01' = {
   ]
 }
 
+module vmMember '../modules/vm.bicep' = {
+  name: memberSrvName
+  params: {
+    adminUsername: adminUsername
+    adminPassword: adminPassword
+    location: location
+    name: memberSrvName
+    osType: 'Windows'
+    subnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnet.name, coreSubnetName)
+    vmSize: memberSrvSize
+  }
+}
+
+resource memberServerADJoin 'Microsoft.Compute/virtualMachines/extensions@2022-11-01' = {
+  name: '${vmMember.name}/ADJoin'
+  dependsOn: [
+    adDcSetup
+  ]
+  location: location
+  properties: {
+    publisher: 'Microsoft.PowerShell'
+    type: 'DSC'
+    typeHandlerVersion: '2.76'
+    autoUpgradeMinorVersion: false
+    settings: {
+      modulesURL: joinADModuleUrl
+      configurationFunction: joinADConfigurationFunction
+      properties: {
+        domainName: domainName
+        adminCreds: {
+          userName: adminUsername
+          password: 'PrivateSettingsRef:adminPassword'
+        }
+      }
+    }
+    protectedSettings: {
+      items: {
+        adminPassword: adminPassword
+      }
+    }
+  }
+}
+
 output vmDcId string = vmDc.outputs.vmId
+output vmMemberId string = vmMember.outputs.vmId
 output vnetId string = vnet.outputs.resourceId

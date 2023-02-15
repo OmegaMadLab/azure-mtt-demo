@@ -1,1 +1,1 @@
-Connect-MgGraph -Scopes "User.ReadWrite.All", "Group.ReadWrite.All"
+Remove-AzResouceGroup -ResourceGroupName 'SPOKE-1-RG'
