@@ -1,0 +1,102 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Get_events_(V4)": {
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['office365']['connectionId']"
+                        }
+                    },
+                    "method": "get",
+                    "path": "/datasets/calendars/v4/tables/@{encodeURIComponent(encodeURIComponent('AAMkADI0MjhiYzk0LTlmZTItNGIyOC04NDk3LWRiZGQ2NmFiY2EyYQBGAAAAAABR2Rp_RMi6TpoWwpAfrV1rBwDwhagiucEUT7BoIri4gfPuAAAAAAEGAADwhagiucEUT7BoIri4gfPuAAAAAH7QAAA='))}/items",
+                    "queries": {
+                        "$filter": "organizer/emailAddress/name eq 'Microsoft ESI' and start/DateTime ge '@{outputs('Today')}' and start/DateTime lt '@{outputs('Tomorrow')}'"
+                    }
+                },
+                "runAfter": {
+                    "Tomorrow": [
+                        "Succeeded"
+                    ]
+                },
+                "runtimeConfiguration": {
+                    "staticResult": {
+                        "name": "Get_events_(V4)0",
+                        "staticResultOptions": "Disabled"
+                    }
+                },
+                "type": "ApiConnection"
+            },
+            "Today": {
+                "inputs": "@startOfDay(if(equals(parameters('TestingDate'), 'null'), utcNow(), parameters('TestingDate')))",
+                "runAfter": {},
+                "type": "Compose"
+            },
+            "Tomorrow": {
+                "inputs": "@startOfDay(if(equals(parameters('TestingDate'), 'null'), addDays(utcNow(), 1), addDays(parameters('TestingDate'), 1)))",
+                "runAfter": {
+                    "Today": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Compose"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            },
+            "TestingDate": {
+                "defaultValue": "2023-03-13",
+                "type": "String"
+            }
+        },
+        "staticResults": {
+            "Get_events_(V4)0": {
+                "outputs": {
+                    "headers": {},
+                    "statusCode": "OK"
+                },
+                "status": "Succeeded"
+            }
+        },
+        "triggers": {
+            "Recurrence": {
+                "evaluatedRecurrence": {
+                    "frequency": "Day",
+                    "interval": 1,
+                    "schedule": {
+                        "hours": [
+                            "8"
+                        ]
+                    }
+                },
+                "recurrence": {
+                    "frequency": "Day",
+                    "interval": 1,
+                    "schedule": {
+                        "hours": [
+                            "8"
+                        ]
+                    }
+                },
+                "type": "Recurrence"
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "value": {
+                "office365": {
+                    "connectionId": "/subscriptions/b41fc177-4d12-4472-b324-11c01f967d2c/resourceGroups/CORE-RESOURCES-RG/providers/Microsoft.Web/connections/office365",
+                    "connectionName": "office365",
+                    "id": "/subscriptions/b41fc177-4d12-4472-b324-11c01f967d2c/providers/Microsoft.Web/locations/westeurope/managedApis/office365"
+                }
+            }
+        }
+    }
+}

@@ -61,7 +61,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2022-08-01' = {
   properties: {
     evictionPolicy: isSpotVm ? 'Deallocate' : null
     billingProfile: isSpotVm ? { maxPrice: -1 } : null
-    priority: isSpotVm ? 'Spot' : 'Regular'
+    priority: isSpotVm ? 'Spot' : null
     availabilitySet: availabilitySetName != '' ?  { id: avSet.id } : null
     hardwareProfile: {
       vmSize: vmSize

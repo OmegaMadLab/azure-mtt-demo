@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworks_aadds_vnet_name": {
+            "value": null
+        },
+        "domainServices_aadds_omegamadlab_it_name": {
+            "value": null
+        },
+        "networkSecurityGroups_aadds_nsg_name": {
+            "value": null
+        },
+        "loadBalancers_aadds_95d3f0d3f965428f80c1c644adac1b7e_lb_name": {
+            "value": null
+        },
+        "networkInterfaces_aadds_99d142a5aa6f40c998733a7945068b58_nic_name": {
+            "value": null
+        },
+        "networkInterfaces_aadds_e48462eab2f54fa5b4b1537912189e49_nic_name": {
+            "value": null
+        },
+        "publicIPAddresses_aadds_95d3f0d3f965428f80c1c644adac1b7e_pip_name": {
+            "value": null
+        }
+    }
+}

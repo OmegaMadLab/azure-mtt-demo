@@ -37,10 +37,27 @@ $acrName = "omegamadlabacrdemo"
 az acr create --resource-group $rg.ResourceGroupName --name $acrName --sku Basic
 
 az acr build --registry $acrName --image helloacrtasks:v1 .\dockerFiles\helloWorld
+az acr build --registry $acrName --image helloacrtasks:v2 .\dockerFiles\helloWorld
+az acr build --registry $acrName --image demo\helloacrtasks2:v1 .\dockerFiles\helloWorld
+
 az acr repository list --name $acrName --output table
 
 # Deploy a Recovery Services Vault and setup Az Backup for the DC
 $rsVault = New-AzRecoveryServicesVault -Name "CORE-RSVAULT" `
                 -ResourceGroupName $rg.ResourceGroupName `
                 -Location $location
+
+# # Deploy an Azure FW in the appropriate vnet
+# $pipFw = New-AzPublicIpAddress -Name "CORE-AZFW-PIP" `
+#             -ResourceGroupName $rg.ResourceGroupName `
+#             -Location $location `
+#             -Sku Standard `
+#             -AllocationMethod Static
+
+# $azFw = New-AzFirewall -Name "CORE-AZFW" `
+#             -ResourceGroupName $rg.ResourceGroupName `
+#             -Location $location `
+#             -VirtualNetworkName $baseInfraDeployment.Outputs.vnetId.Name `
+#             -PublicIpName $pipFw.Name `
+#             -SkuName 
 

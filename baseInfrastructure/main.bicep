@@ -35,6 +35,7 @@ var subnetList = [
   {
     name: coreSubnetName
     addressPrefix: '10.0.1.0/24'
+    natGatewayId: natGw.id
   }
 ]
 
@@ -58,7 +59,7 @@ module vmDc '../modules/vm.bicep' = {
     osType: 'Windows'
     subnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnet.name, coreSubnetName)
     vmSize: dcVmSize
-    isPrivateIpStatic: true
+    //isPrivateIpStatic: true Need correction!
   }
 }
 
@@ -156,6 +157,34 @@ resource memberServerADJoin 'Microsoft.Compute/virtualMachines/extensions@2022-1
   }
 }
 
+resource natGwPip 'Microsoft.Network/publicIPAddresses@2022-07-01' = {
+  name: '${namePrefix}-NATGW-PIP'
+  location: location
+  properties: {
+    publicIPAllocationMethod: 'Static'
+  }
+  sku: {
+    name: 'Standard'
+    tier: 'Regional'
+  }
+}
+
+resource natGw 'Microsoft.Network/natGateways@2022-07-01' = {
+  name: '${namePrefix}-NATGW'
+  location: location
+  sku: {
+    name: 'Standard'
+  }
+  properties: {
+    publicIpAddresses: [
+      {
+        id: natGwPip.id
+      }
+    ]
+  }
+}
+
 output vmDcId string = vmDc.outputs.vmId
 output vmMemberId string = vmMember.outputs.vmId
 output vnetId string = vnet.outputs.resourceId
+output vnetName string = vnet.outputs.name
