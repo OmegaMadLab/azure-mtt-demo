@@ -1,6 +1,6 @@
 param namePrefix string = 'AADDS'
 param domainName string = 'aadds.omegamadlab.it'
-param location string = resourceGroup().location
+param location string
 
 resource nsg 'Microsoft.Network/networkSecurityGroups@2022-07-01' = {
   name: '${namePrefix}-NSG'
@@ -46,17 +46,15 @@ resource vnet 'Microsoft.Network/virtualNetworks@2022-07-01' = {
         '10.0.4.0/24'
       ]
     }
-    subnets: [
-      {
-        name: '${namePrefix}-SUBNET'
-        properties: {
-          addressPrefix: '10.0.4.0/24'
-          networkSecurityGroup: {
-            id: nsg.id
-          }
-        }
-      }
-    ]
+  }
+}
+
+resource subnet 'Microsoft.Network/virtualNetworks/subnets@2022-09-01' = {
+  parent: vnet
+  name: '${namePrefix}-SUBNET'
+  properties: {
+    addressPrefix: '10.0.4.0/24'
+    networkSecurityGroup: { id: nsg.id }
   }
 }
 
@@ -68,7 +66,7 @@ resource aadDs 'Microsoft.AAD/domainServices@2022-12-01' = {
     replicaSets: [
       {
         location: location
-        subnetId: vnet.properties.subnets[0].id
+        subnetId: subnet.id
       }
     ]
     ldapsSettings: {
@@ -88,8 +86,8 @@ resource aadDs 'Microsoft.AAD/domainServices@2022-12-01' = {
     domainConfigurationType: 'FullySynced'
     notificationSettings: {
       notifyGlobalAdmins: 'Enabled'
-      notifyDcAdmins: 'Enabled' 
+      notifyDcAdmins: 'Enabled'
     }
-    sku: 'Standard' 
+    sku: 'Standard'
   }
 }

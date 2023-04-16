@@ -5,4 +5,4 @@ New-AzDeployment -TemplateFile '.\main.bicep' `
     -adminUsername "omegamadlab" `
     -adminPassword (Read-Host "password" -AsSecureString) `
     -LocationFromTemplate "westeurope" `
-    -jumpBoxPublicIp '151.83.210.211'
+    -jumpBoxPublicIp '52.174.56.84'
